@@ -5,12 +5,12 @@ import {
   Navbar as NextUINavbar,
   NavbarContent,
   NavbarBrand,
-  NavbarMenu,
 } from "@nextui-org/react";
 import NextLink from "next/link";
 import { FaBars, FaChevronLeft } from "react-icons/fa";
 import * as motion from "framer-motion/client";
-import { MdOutlineVerifiedUser, MdVerifiedUser } from "react-icons/md";
+import { MdOutlineVerifiedUser } from "react-icons/md";
+import { ReactNode, RefObject } from "react";
 
 import { Navbar } from "../navbar/navbar";
 
@@ -19,12 +19,11 @@ import { ToggleButton } from "./toggle";
 
 import { Icon } from "@/components/icons";
 import { useSidebar } from "@/store/store";
-import { ReactNode, RefObject, useEffect, useRef, useState } from "react";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   refMain?: RefObject<HTMLDivElement> | null;
-};
+}
 
 export default function Dashboard({ children, refMain }: Props) {
   const { isOpen, toggleSidebar } = useSidebar();
@@ -49,7 +48,7 @@ export default function Dashboard({ children, refMain }: Props) {
   };
 
   return (
-    <div className="flex min-h-screen dark:bg-foreground-100 bg-background"> 
+    <div className="flex min-h-screen dark:bg-foreground-100 bg-background">
       {/* Sidebar */}
       <motion.aside
         animate={isOpen ? "open" : "closed"}
@@ -86,7 +85,7 @@ export default function Dashboard({ children, refMain }: Props) {
                 href="/"
                 prefetch={false}
               >
-                <Icon className="flex size-8" icon={MdOutlineVerifiedUser} /> 
+                <Icon className="flex size-8" icon={MdOutlineVerifiedUser} />
                 <p
                   className={clsx(
                     "text-lg md:text-xl font-bold text-inherit",
@@ -153,7 +152,10 @@ export default function Dashboard({ children, refMain }: Props) {
         {/* Header   */}
         <Navbar />
         {/* Main Content Area */}
-        <div className={clsx("w-full overflow-x-hidden overflow-y-auto p-6")} ref={refMain}>
+        <div
+          className={clsx("w-full overflow-x-hidden overflow-y-auto p-6")}
+          ref={refMain}
+        >
           {children}
         </div>
       </motion.div>
