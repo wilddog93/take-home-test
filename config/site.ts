@@ -1,9 +1,9 @@
-import { MdOutlineVerifiedUser, MdPersonOutline } from "react-icons/md";
+import { MdPersonOutline } from "react-icons/md";
 
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js Starter",
+  name: "Reqres.in API with Next.js",
   description: "Make beautiful websites regardless of your design experience.",
   sideMenuItems: [
     {
