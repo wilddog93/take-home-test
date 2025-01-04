@@ -66,15 +66,15 @@ export const CardUsers = ({ id }: Props) => {
     <Fragment>
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
-        className="py-10 px-4 rounded-lg shadow-small hover:cursor-pointer"
+        className="w-full py-10 px-4 rounded-lg shadow-small hover:cursor-pointer overflow-hidden"
         onClick={onOpen}
       >
         <div className="flex flex-row items-center justify-center space-y-0 pb-2">
           <Avatar alt={first_name} className="h-20 w-20" src={avatar} />
         </div>
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center overflow-auto">
           <div className="text-2xl font-bold">{first_name}</div>
-          <p className="text-sm text-muted-foreground">{email}</p>
+          <p className="text-xs text-muted-foreground">{email}</p>
           <Button
             className="mt-4 px-10 text-base"
             size="sm"
