@@ -1,6 +1,6 @@
 import { RefObject, useEffect, useState } from "react";
 
-const useScroll = (ref: RefObject<HTMLDivElement>) => {
+const useScroll = (ref: RefObject<HTMLDivElement | null>) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isLastScroll, setIsLastScroll] = useState(false);
 

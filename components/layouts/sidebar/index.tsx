@@ -22,7 +22,7 @@ import { useSidebar } from "@/store/store";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
-  refMain?: RefObject<HTMLDivElement> | null;
+  refMain?: RefObject<HTMLDivElement | null> | null;
 }
 
 export default function Dashboard({ children, refMain }: Props) {
