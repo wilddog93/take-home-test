@@ -18,6 +18,7 @@ import { UserEntity } from "@/entities";
 import { useQueryData } from "@/hooks/query/useQueryData";
 import { get } from "@/services/api";
 import { USERS } from "@/services/endpoin";
+import { useSearch } from "@/store/search/useSearch";
 
 interface Props {
   id: number | string | any;
@@ -25,6 +26,7 @@ interface Props {
 
 export const CardUsers = ({ id }: Props) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isSearch, search } = useSearch();
   const [isOpenForm, setIsOpenForm] = useState<boolean>(false);
   const { data, isLoading, error } = useQueryData({
     queryKey: ["user", id],
@@ -37,6 +39,13 @@ export const CardUsers = ({ id }: Props) => {
   };
 
   const { avatar, email, first_name } = data?.data || {};
+  
+  const isReplaceSearchMarkdown = (search: string | undefined) => {
+    if (!search || !first_name) return first_name;
+
+    const regex = new RegExp(`(${search})`, "ig");
+    return first_name.replace(regex, `<mark>$1</mark>`);
+  };
 
   if (isLoading)
     return (
@@ -73,7 +82,12 @@ export const CardUsers = ({ id }: Props) => {
           <Avatar alt={first_name} className="h-20 w-20" src={avatar} />
         </div>
         <div className="flex flex-col items-center justify-center overflow-auto">
-          <div className="text-2xl font-bold">{first_name}</div>
+          <div 
+            className="text-2xl font-bold" 
+            dangerouslySetInnerHTML={{
+              __html: isReplaceSearchMarkdown(search) as string,
+            }}
+            />
           <p className="text-xs text-muted-foreground">{email}</p>
           <Button
             className="mt-4 px-10 text-base"
